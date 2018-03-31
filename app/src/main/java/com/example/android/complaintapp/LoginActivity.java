@@ -2,24 +2,14 @@ package com.example.android.complaintapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
-
-
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,16 +20,17 @@ import com.google.firebase.auth.FirebaseUser;
 /**
  * A login screen that offers login via email/password.
  */
-abstract class LoginActivity extends AppCompatActivity  implements  /*implements LoaderCallbacks<Cursor>*/
+public class LoginActivity extends AppCompatActivity  { /*implements LoaderCallbacks<Cursor>*/
 
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     //new
-        View.OnClickListener {
+
 
 
         public FirebaseAuth mAuth;
+    public Button mEmailSignInButton;
 
         /**
          * A dummy authentication store containing known user names and passwords.
@@ -72,27 +63,25 @@ abstract class LoginActivity extends AppCompatActivity  implements  /*implements
 
             mPasswordView = (EditText) findViewById(R.id.password);
             mPas = mPasswordView.getText().toString();
-       /* mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });*/
-
-// ...
             mAuth = FirebaseAuth.getInstance();
+            mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+            mEmailSignInButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mEm = mEmailView.getText().toString();
+                    mPas = mPasswordView.getText().toString();
+                  signIn(mEm,mPas);
+
+                }
+            });
         }
-    @Override
-    public void onStart() {
+    //@Override
+    /*public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
-    }
+    }*/
     private void signIn(String email,String password){
         if (!validateForm()) {
             return;
@@ -105,41 +94,86 @@ abstract class LoginActivity extends AppCompatActivity  implements  /*implements
                 // Sign in success, update UI with the signed-in user's information
 
                 FirebaseUser user = mAuth.getCurrentUser();
-                updateUI(user);
+                findViewById(R.id.email_sign_in_button).setVisibility(View.VISIBLE);
+                //updateUI(user);
+                Intent Complaint = new Intent(LoginActivity.this, DispcomplaintsActivity.class);
+
+
+                // Start the new activity
+
+                startActivity(Complaint);
+
+
+
             } else {
                 // If sign in fails, display a message to the user.
                 //Log.w(TAG, "signInWithEmail:failure", task.getException());
                 Toast.makeText(LoginActivity.this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show();
-                updateUI(null);
+                //updateUI(null);
+                findViewById(R.id.email_sign_in_button).setVisibility(View.GONE);
             }
         }
         });
             }
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = mEmailView.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError("Required.");
+            valid = false;
+        } else {
+            mEmailView.setError(null);
+        }
+
+        String password = mPasswordView.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPasswordView.setError("Required.");
+            valid = false;
+        } else {
+            mPasswordView.setError(null);
+        }
+
+        return valid;
+    }
+
+   /* private void updateUI(FirebaseUser user) {
+       // hideProgressDialog();
+        if (user != null) {
 
 
-            Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-         findViewById(R.id.email_sign_in_button).setOnClickListener(this);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mEm = mEmailView.getText().toString();
-                mPas = mPasswordView.getText().toString();
-                Intent Complaint = new Intent(LoginActivity.this, DispcomplaintsActivity.class);
+            mEmailSignInButton=(Button)  findViewById(R.id.email_sign_in_button);
+            findViewById(R.id.email_sign_in_button).setVisibility(View.VISIBLE);
+
+                   
 
 
-                if((mEm.trim()).equals("r@gmail.com")&&(mPas.trim()).equals("123456"))// Start the new activity
-                startActivity(Complaint);
-                else
-                    Toast.makeText(getApplicationContext(), "invalid email and password", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        } else {
+           *//* mStatusTextView.setText(R.string.signed_out);
+            mDetailTextView.setText(null);
+
+            findViewById(R.id.email_password_buttons).setVisibility(View.VISIBLE);
+            findViewById(R.id.email_password_fields).setVisibility(View.VISIBLE);*//*
+            findViewById(R.id.email_sign_in_button).setVisibility(View.GONE);
+        }
+    }*/
+   /* @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if(i==R.id.email_sign_in_button)
+        {
+            signIn(mEmailView.getText().toString(), mPasswordView.getText().toString());
+        }
+    }*/
+
 
 
     }
 
 
-    }
-        }
+
+
 
 
