@@ -71,7 +71,8 @@
             android:text="yo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/resolveview"/>
+            android:id="@+id/resolveview"
+            android:focusable = "false" />
 
                 <!--<Button
                     android:id="@+id/ResTime"

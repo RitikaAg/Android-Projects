@@ -26,6 +26,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Create a new intent to open the {@link NumbersActivity}
+
                 Intent LoginIntent = new Intent(UserActivity.this, LoginActivity.class);
 
                 // Start the new activity
