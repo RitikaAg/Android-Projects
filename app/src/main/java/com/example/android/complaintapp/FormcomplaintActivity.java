@@ -103,7 +103,10 @@ private String services;
                 hostel = radiohButton.getText().toString();
                 condition = radiocButton.getText().toString();
                 Intent ServicesIntent = new Intent(FormcomplaintActivity.this, SuccessActivity.class);
+
                 ServicesIntent.putExtra("fkey",key);
+
+
                 services=getIntent().getStringExtra("service");
 
                 if (check())

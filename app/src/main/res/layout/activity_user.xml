@@ -39,7 +39,23 @@
             android:textAlignment="center"
             style="@style/CategoryStyle"
             android:text="Login To Control Room"
-             />
+            />
 
     </FrameLayout>
+    <FrameLayout
+        android:layout_width="290dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="300dp"
+        android:background="@drawable/layout_bg">
+        <TextView
+            android:id="@+id/status"
+            android:textAlignment="center"
+            style="@style/CategoryStyle"
+            android:text="Give Complaint Status"
+            />
+
+    </FrameLayout>
+
 </RelativeLayout>

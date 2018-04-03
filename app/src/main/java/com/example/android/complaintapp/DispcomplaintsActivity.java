@@ -25,6 +25,7 @@ public class DispcomplaintsActivity extends AppCompatActivity{
     ListView listViewComplaints;
     List<Complaint> complaintList;
     ComplaintList adapter;
+    String key;
     private DatabaseReference databaseComp;
 
     @Override
@@ -44,6 +45,8 @@ public class DispcomplaintsActivity extends AppCompatActivity{
                 for(DataSnapshot compSnapshot: dataSnapshot.getChildren())
                 {
                     Complaint complaint=compSnapshot.getValue(Complaint.class);
+
+
                     complaintList.add(complaint);
 
                 }
@@ -68,10 +71,19 @@ public class DispcomplaintsActivity extends AppCompatActivity{
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO get key of the clicked complaint
 
-                Toast.makeText(view.getContext(),"hdjf",Toast.LENGTH_SHORT).show();
 
+                Complaint c=(Complaint)  adapterView.getItemAtPosition(i);
+                String key=c.getKey();
+                String email=c.getEmail();
+                Toast.makeText(view.getContext(),key+email,Toast.LENGTH_SHORT).show();
+                Intent ServicesIntent = new Intent(DispcomplaintsActivity.this, EntertimeActivity.class);
+
+                ServicesIntent.putExtra("fkey",key.toString());
+                ServicesIntent.putExtra("emailid",email.toString());
                 Intent appInfo = new Intent(getApplicationContext(), EntertimeActivity.class);
+
                 startActivity(appInfo);
 
             }

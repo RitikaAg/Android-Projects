@@ -52,10 +52,20 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         TextView con = (TextView) listViewItem.findViewById(R.id.conditionview);
         TextView descrip = (TextView) listViewItem.findViewById(R.id.descriptionview);
         TextView service = (TextView) listViewItem.findViewById(R.id.services);
+
         EditText resolution = (EditText) listViewItem.findViewById(R.id.resolveview);
+
         // Button enter=(Button) listViewItem.findViewById(R.id.ResTime);
 
         Complaint complaint = complaintList.get(position);
+
+
+
+
+
+
+
+
         name.setText(complaint.getName());
         rollno.setText(complaint.getRollno());
         String r = complaint.getHostel() + "-" + complaint.getRoomno();

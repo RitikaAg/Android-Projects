@@ -50,6 +50,22 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(ServicesIntent);
             }
         });
+        TextView statuscheck=(TextView) findViewById(R.id.status);
+        statuscheck.setOnClickListener(new View.OnClickListener()
+
+        {
+
+            // The code in this method will be executed when the numbers category is clicked on.
+            @Override
+            public void onClick(View view) {
+                // Create a new intent to open the {@link NumbersActivity}
+                //TODO change activity name
+                Intent ServicesIntent = new Intent(UserActivity.this, StatustellActivity.class);
+
+                // Start the new activity
+                startActivity(ServicesIntent);
+            }
+        });
 
 
     }

@@ -67,7 +67,13 @@
             android:label="ComplaintApp"
             android:hardwareAccelerated="false"
             />
+        <activity
+            android:name=".StatustellActivity"
+            android:label="ComplaintApp"
+            android:hardwareAccelerated="false"
+            />
     </application>
+
 
 
 </manifest>

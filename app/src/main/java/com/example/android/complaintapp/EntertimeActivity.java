@@ -1,21 +1,79 @@
 package com.example.android.complaintapp;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.DatePicker;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by ritika on 9/3/18.
  */
 
-public class EntertimeActivity extends AppCompatActivity {
-    private Calendar myCalendar;
+public class EntertimeActivity  extends DispcomplaintsActivity {
+    private AutoCompleteTextView timeView;
+    private String time;
+
+    private Button enter;
+    private DatabaseReference mDatabase;
+
+
+// ...
+private void sendEmail(String t,String em) {
+    //Getting content for email
+     /*email = em;
+     subject = "complaint";
+    message = t;*/
+
+    //Creating SendMail object
+    SendMail sm = new SendMail(this, em, "complaint", t);
+
+    //Executing sendmail to send email
+    sm.execute();
+}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_entertime);
+        timeView = (AutoCompleteTextView) findViewById(R.id.time);
+        time = timeView.getText().toString();
+        enter = (Button) findViewById(R.id.button2);
+        //TODO fix this
+
+            /*String key = getIntent().getStringExtra("fkey");
+            final String email = getIntent().getStringExtra("emailid");
+            Toast.makeText(this,key+email,Toast.LENGTH_SHORT).show();*/
+
+
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("complaints");
+
+        enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                timeView = (AutoCompleteTextView) findViewById(R.id.time);
+                time = timeView.getText().toString();
+               // mDatabase.child("complaints").child(key).child("res").setValue(time);
+
+
+               //TODO fix this
+                sendEmail(time,email);
+                Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+    }
+
+
+}
+   /* private Calendar myCalendar;
     private TextView edittext;
     private TextView edittext1;
     private Calendar myClock;
@@ -39,7 +97,7 @@ public class EntertimeActivity extends AppCompatActivity {
                 updateLabel();
             }
 
-        };
+        };*/
       /* myClock= Calendar.getInstance();
        final TimePickerDialog.OnTimeSetListener time=new TimePickerDialog.OnTimeSetListener() {
            @Override
@@ -67,15 +125,16 @@ public class EntertimeActivity extends AppCompatActivity {
                 new TimePickerDialog(EntertimeActivity.this,time,myClock.get(Calendar.HOUR_OF_DAY),myClock.get(Calendar.MINUTE),true).show();
             }
         });*/
-    }
-    private void updateLabel() {
+
+   /* private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        edittext.setText(sdf.format(myCalendar.getTime()));
-    }
+        edittext.setText(sdf.format(myCalendar.getTime()));*/
+
    /* private void updateLabel1{
         String myFormat="HH/MM";
         SimpleTimeZone t=new SimpleTimeZone(myFormat,Locale.US);
     }*/
-}
+
+

@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity  { /*implements LoaderCallb
                 Toast.makeText(LoginActivity.this, "Authentication failed.",
                         Toast.LENGTH_SHORT).show();
                 //updateUI(null);
-                findViewById(R.id.email_sign_in_button).setVisibility(View.GONE);
+                //findViewById(R.id.email_sign_in_button).setVisibility(View.GONE);
             }
         }
         });
