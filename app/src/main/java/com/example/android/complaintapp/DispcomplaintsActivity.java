@@ -1,5 +1,6 @@
 package com.example.android.complaintapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,10 @@ public class DispcomplaintsActivity extends AppCompatActivity{
         listViewComplaints=(ListView)findViewById(R.id.listViewcomp);
 
         databaseComp= FirebaseDatabase.getInstance().getReference("complaints");
+        //added dialog bar
+        ProgressDialog Dialog = new ProgressDialog(DispcomplaintsActivity.this);
+        Dialog.setMessage("Loading Complaints");
+        Dialog.show();
         databaseComp.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -71,18 +76,18 @@ public class DispcomplaintsActivity extends AppCompatActivity{
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO get key of the clicked complaint
+
 
 
                 Complaint c=(Complaint)  adapterView.getItemAtPosition(i);
                 String key=c.getKey();
                 String email=c.getEmail();
-                Toast.makeText(view.getContext(),key+email,Toast.LENGTH_SHORT).show();
-                Intent ServicesIntent = new Intent(DispcomplaintsActivity.this, EntertimeActivity.class);
 
-                ServicesIntent.putExtra("fkey",key.toString());
-                ServicesIntent.putExtra("emailid",email.toString());
+
                 Intent appInfo = new Intent(getApplicationContext(), EntertimeActivity.class);
+
+                appInfo.putExtra("fkey",key);
+                appInfo.putExtra("emailid",email);
 
                 startActivity(appInfo);
 

@@ -71,6 +71,10 @@ public class LoginActivity extends AppCompatActivity  { /*implements LoaderCallb
                     mEm = mEmailView.getText().toString();
                     mPas = mPasswordView.getText().toString();
                   signIn(mEm,mPas);
+                    mEmailView.getText().clear();
+                    mPasswordView.getText().clear();
+
+
 
                 }
             });

@@ -60,13 +60,14 @@ public class StatustellActivity extends AppCompatActivity {
                 int selectstatus = response.getCheckedRadioButtonId();
                 RadioButton selectstat = (RadioButton) findViewById(selectstatus);
                 status=selectstat.getText().toString();
-                final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
+
                 if(status=="Yes") {
                     FirebaseDatabase.getInstance().getReference().child("complaints").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
 
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Id = StatusView.getText().toString().trim();
+                            final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Complaint c = snapshot.getValue(Complaint.class);
                                 if (c.getKey() == Id)
@@ -84,8 +85,6 @@ public class StatustellActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-
 
             }
         });
