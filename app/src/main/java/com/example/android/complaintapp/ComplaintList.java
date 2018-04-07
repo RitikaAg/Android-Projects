@@ -1,13 +1,17 @@
 package com.example.android.complaintapp;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +57,9 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         TextView descrip = (TextView) listViewItem.findViewById(R.id.descriptionview);
         TextView service = (TextView) listViewItem.findViewById(R.id.services);
 
-        EditText resolution = (EditText) listViewItem.findViewById(R.id.resolveview);
+       // EditText resolution = (EditText) listViewItem.findViewById(R.id.resolveview);
+
+
 
         // Button enter=(Button) listViewItem.findViewById(R.id.ResTime);
 
@@ -73,9 +79,21 @@ public class ComplaintList extends ArrayAdapter<Complaint> {
         number.setText(complaint.getNumber());
         con.setText(complaint.getCondition());
         descrip.setText(complaint.getDescription());
+       String con1 = complaint.getCondition().trim();
+        LinearLayout bngcolor = (LinearLayout)listViewItem.findViewById(R.id.listviewstatus);
+
+        if(con1.equals("Emergency"))
+        {
+            bngcolor.setBackgroundColor(Color.rgb(253,134,134));
+        }
+        else
+        {
+            bngcolor.setBackgroundColor(Color.rgb(173,246,146));
+        }
+
 
         service.setText(complaint.getService());
-        resolution.setText(complaint.getRes());
+       // resolution.setText(complaint.getRes());
 
         return listViewItem;
     }

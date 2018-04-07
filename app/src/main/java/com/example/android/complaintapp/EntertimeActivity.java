@@ -138,4 +138,6 @@ private void sendEmail(String t,String em) {
         SimpleTimeZone t=new SimpleTimeZone(myFormat,Locale.US);
     }*/
 
-
+ /*android:layout_alignLeft="@+id/textView3"
+         android:layout_alignStart="@+id/textView3"
+         android:layout_below="@+id/autoCompleteTextView*/
