@@ -17,8 +17,8 @@ public class SuccessActivity extends FormcomplaintActivity  {
 
         setContentView(R.layout.activity_success);
         TextView keyview=(TextView) findViewById(R.id.key);
-        String key=getIntent().getStringExtra("fkey");
-        keyview.setText("Your Complaint registeration number is"+key);
+        //String key=getIntent().getStringExtra("fkey");
+        keyview.setText("Your Complaint Has Been Registered Successfully"+"\n"+"Further Details Shall Be Mailed To You");
 
     }
 

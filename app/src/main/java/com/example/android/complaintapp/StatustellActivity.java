@@ -57,22 +57,29 @@ public class StatustellActivity extends AppCompatActivity {
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                response=(RadioGroup)findViewById(R.id.response);
+                response.check(R.id.yes);
                 int selectstatus = response.getCheckedRadioButtonId();
                 RadioButton selectstat = (RadioButton) findViewById(selectstatus);
-                status=selectstat.getText().toString();
+                status=selectstat.getText().toString().trim();
 
-                if(status=="Yes") {
-                    FirebaseDatabase.getInstance().getReference().child("complaints").addListenerForSingleValueEvent(new ValueEventListener() {
+                if(status.equals("Yes")) {
+                   
+                    FirebaseDatabase.getInstance().getReference().child("complaints").addValueEventListener(new ValueEventListener() {
                         @Override
 
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            StatusView =(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
                             Id = StatusView.getText().toString().trim();
-                            final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
+
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Complaint c = snapshot.getValue(Complaint.class);
-                                if (c.getKey() == Id)
+                                //Object obj = snapshot.getKey();
+                                //String a = obj.toString();
+                                if (c.getKey().equals(Id))
                                 {
                                     DatabaseReference src=snapshot.getRef();
+                                    final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
                                     moveFirebaseRecord(src,target);
                                     break;
                                 }
@@ -90,7 +97,7 @@ public class StatustellActivity extends AppCompatActivity {
         });
 
     }
-    public void moveFirebaseRecord(DatabaseReference fromPath, final DatabaseReference toPath)
+    public void moveFirebaseRecord(final DatabaseReference fromPath, final DatabaseReference toPath)
     {
         fromPath.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -105,10 +112,12 @@ public class StatustellActivity extends AppCompatActivity {
                         if (firebaseError != null)
                         {
                             System.out.println("Copy failed");
+
                         }
                         else
                         {
                             System.out.println("Success");
+                            fromPath.removeValue();
 
                         }
                     }

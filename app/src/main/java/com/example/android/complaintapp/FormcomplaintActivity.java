@@ -33,8 +33,8 @@ public class FormcomplaintActivity extends AppCompatActivity {
     private RadioGroup hostelgroup;
     private RadioGroup congroup;
 
-    public  String key;
-private String services;
+    public String key;
+    private String services;
 
     private AutoCompleteTextView mNameView;
     private AutoCompleteTextView mEmailView;
@@ -46,9 +46,6 @@ private String services;
     private DatabaseReference mDatabase;
 
 // ...
-
-
-
 
 
     @Override
@@ -91,9 +88,6 @@ private String services;
             @Override
             public void onClick(View view) {
 
-                // TODO: Send messages on click
-
-
                 // get selected radio button from radioGroup
                 int selectedhosId = hostelgroup.getCheckedRadioButtonId();
                 int selectedconId = congroup.getCheckedRadioButtonId();
@@ -104,17 +98,15 @@ private String services;
                 condition = radiocButton.getText().toString();
                 Intent ServicesIntent = new Intent(FormcomplaintActivity.this, SuccessActivity.class);
 
-                ServicesIntent.putExtra("fkey",key);
-
-
-                services=getIntent().getStringExtra("service");
+                ServicesIntent.putExtra("fkey", key);
+                services = getIntent().getStringExtra("service");
 
                 if (check())
                 // Start the new activity
                 {
 
 
-                    Complaint complaint = new Complaint(name, email, rollno, hostel, roomno, number, condition, description,key,services,"");
+                    Complaint complaint = new Complaint(name, email, rollno, hostel, roomno, number, condition, description, key, services, "");
 
                     mDatabase.push().setValue(complaint);
                     startActivity(ServicesIntent);
@@ -128,8 +120,7 @@ private String services;
 
     }
 
-    boolean check()
-    {
+    boolean check() {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         email = mEmailView.getText().toString();
         name = mNameView.getText().toString();
@@ -138,42 +129,37 @@ private String services;
         number = mNumberView.getText().toString();
         description = mdescription.getText().toString();
 
-        boolean c,d,e,n;
+        boolean c, d, e, n;
         if (email.matches(emailPattern)) {
             //Toast.makeText(getApplicationContext(), "valid email address", Toast.LENGTH_SHORT).show();
-            c=true;
+            c = true;
         } else {
             Toast.makeText(getApplicationContext(), "Invalid Email Address", Toast.LENGTH_SHORT).show();
-            c=false;
+            c = false;
         }
-        if(!isValidMobile(number)) {
+        if (!isValidMobile(number)) {
             Toast.makeText(getApplicationContext(), "Invalid Phone Number", Toast.LENGTH_SHORT).show();
             e = false;
-        }
-        else e=true;
+        } else e = true;
 
-        if(!isValidRoomno(roomno)) {
+        if (!isValidRoomno(roomno)) {
             Toast.makeText(getApplicationContext(), "Invalid Room Number", Toast.LENGTH_SHORT).show();
             e = false;
-        }
-        else e=true;
+        } else e = true;
 
 
-        if (name.matches("") || rollno.matches("") || roomno.matches("") || number.matches("") || email.matches("")||description.matches("")) {
+        if (name.matches("") || rollno.matches("") || roomno.matches("") || number.matches("") || email.matches("") || description.matches("")) {
             Toast.makeText(this, "All fields are compulsory", Toast.LENGTH_SHORT).show();
-            d=false;
+            d = false;
 
-        }
-        else
-            d=true;
+        } else
+            d = true;
 
-        if(!name.matches("^[\\p{L} .'-]+$"))
-        {
+        if (!name.matches("^[\\p{L} .'-]+$")) {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
-            n=false;
-        }
-        else n=true;
-        if(c&&d&&e&&n)
+            n = false;
+        } else n = true;
+        if (c && d && e && n)
             return true;
         else
             return false;
@@ -185,34 +171,23 @@ private String services;
     }
 
     private boolean isValidRoomno(String roomno) {
-        boolean check=false;
-        if(!Pattern.matches("[a-zA-Z]+", roomno))
-        {
-            if(roomno.length() < 1 || roomno.length() > 3) {
+        boolean check = false;
+        if (!Pattern.matches("[a-zA-Z]+", roomno)) {
+            if (roomno.length() < 1 || roomno.length() > 3) {
                 // if(phone.length() != 10) {
                 check = false;
 
             } else {
                 check = true;
             }
-        }
-
-        else
-            {
-            check=false;
+        } else {
+            check = false;
         }
         return check;
     }
 
 
-
-
-
 // onClick of button perform this simplest code.
-
-
-
-
 
 
 }

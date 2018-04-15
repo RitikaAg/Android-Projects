@@ -41,7 +41,7 @@ private void sendEmail(String t,String em) {
         timeView = (AutoCompleteTextView) findViewById(R.id.time);
         time = timeView.getText().toString();
         enter = (Button) findViewById(R.id.button2);
-        //TODO fix this
+        
 
             String key = getIntent().getStringExtra("fkey");
             final String email = getIntent().getStringExtra("emailid");
@@ -62,10 +62,10 @@ private void sendEmail(String t,String em) {
                 String key = getIntent().getStringExtra("fkey");
                  String email = getIntent().getStringExtra("emailid");
 
-               //TODO fix this
+
                 sendEmail("Your rectification time is:"+time+"\n"+"Your complaint id is:"+key+"\n"+"Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form",email);
                 Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
-
+               finish();
             }
         });
 
