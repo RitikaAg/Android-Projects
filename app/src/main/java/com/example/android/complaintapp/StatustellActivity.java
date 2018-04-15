@@ -1,5 +1,6 @@
 package com.example.android.complaintapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,23 +59,34 @@ public class StatustellActivity extends AppCompatActivity {
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                response=(RadioGroup)findViewById(R.id.response);
+                response.check(R.id.yes);
                 int selectstatus = response.getCheckedRadioButtonId();
                 RadioButton selectstat = (RadioButton) findViewById(selectstatus);
-                status=selectstat.getText().toString();
+                status=selectstat.getText().toString().trim();
 
-                if(status=="Yes") {
-                    FirebaseDatabase.getInstance().getReference().child("complaints").addListenerForSingleValueEvent(new ValueEventListener() {
+                if(status.equals("Yes")) {
+                   
+                    FirebaseDatabase.getInstance().getReference().child("complaints").addValueEventListener(new ValueEventListener() {
                         @Override
 
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            StatusView =(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
                             Id = StatusView.getText().toString().trim();
-                            final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
+
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 Complaint c = snapshot.getValue(Complaint.class);
-                                if (c.getKey() == Id)
+                                //Object obj = snapshot.getKey();
+                                //String a = obj.toString();
+                                if (c.getKey().equals(Id))
                                 {
                                     DatabaseReference src=snapshot.getRef();
+                                    final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
+                                    //TODO wrong node pushed
                                     moveFirebaseRecord(src,target);
+
+                                    
+
                                     break;
                                 }
 
@@ -88,9 +101,11 @@ public class StatustellActivity extends AppCompatActivity {
 
             }
         });
+        Toast.makeText(getApplicationContext(), "Your response has been recorded", Toast.LENGTH_SHORT).show();
+        Intent ServicesIntent = new Intent(StatustellActivity.this, UserActivity.class);
 
     }
-    public void moveFirebaseRecord(DatabaseReference fromPath, final DatabaseReference toPath)
+    public void moveFirebaseRecord(final DatabaseReference fromPath, final DatabaseReference toPath)
     {
         fromPath.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -105,10 +120,12 @@ public class StatustellActivity extends AppCompatActivity {
                         if (firebaseError != null)
                         {
                             System.out.println("Copy failed");
+
                         }
                         else
                         {
                             System.out.println("Success");
+                            fromPath.removeValue();
 
                         }
                     }
