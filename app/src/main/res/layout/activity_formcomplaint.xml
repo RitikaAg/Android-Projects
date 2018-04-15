@@ -40,7 +40,8 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="name"
+                android:hint="Name"
+                android:textColor="#000000"
                 android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true" />
@@ -56,9 +57,10 @@
                 <AutoCompleteTextView
 
                     android:id="@+id/rollno"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="rollno"
+                    android:hint="Roll No"
                     android:inputType="text"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -78,9 +80,10 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_email"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:textColor="#000000"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -96,24 +99,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BH1"
+            android:textColor="#000000"
            />
                <RadioButton
                    android:id="@+id/radio_bh2"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="BH2"
+                   android:textColor="#000000"
                    />
                <RadioButton
                    android:id="@+id/radio_bh3"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="BH3"
+                   android:textColor="#000000"
                    />
                <RadioButton
                    android:id="@+id/radio_gh"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="GH"
+                   android:textColor="#000000"
                    />
            </RadioGroup>
 
@@ -128,10 +135,11 @@
                         android:id="@+id/roomno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Room no"
+                        android:hint="Room No"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="#000000"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -147,10 +155,11 @@
                     android:id="@+id/number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone no"
+                    android:hint="Phone No"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="#000000"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -170,12 +179,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Emergency"
+                    android:textColor="#000000"
                     />
                 <RadioButton
                     android:id="@+id/nonemergency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Non Emergency"
+                    android:textColor="#000000"
                     />
 
             </RadioGroup>
@@ -189,24 +200,34 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="description"
+                    android:hint="Description"
                     android:inputType="text"
                     android:maxLines="6"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:textColor="#000000"/>
 
             </android.support.design.widget.TextInputLayout>
 
 
             <Button
                 android:id="@+id/register"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+               android:textSize="18sp"
+                android:padding="15dp"
                 android:layout_marginTop="16dp"
 
-                android:text="Register your complaint"
-                android:background="@color/category_phrases"
-                android:textStyle="bold" />
+                android:text="Register Your Complaint"
+
+                android:textStyle="bold"
+                android:elevation="15dp"
+                android:translationZ="15dp"
+                android:stateListAnimator="@null"
+                android:textColor="#000000"
+
+                android:background="@drawable/layout_bg"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/arcade"/>
 
         </LinearLayout>
 

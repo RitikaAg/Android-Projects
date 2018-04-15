@@ -17,8 +17,10 @@
         android:layout_marginLeft="101dp"
         android:layout_marginStart="101dp"
         android:layout_marginTop="21dp"
-        android:text="Complaints"
+        android:text="COMPLAINTS"
+        android:textStyle="bold"
         android:textSize="30sp"
+        android:textColor="#000000"
         android:id="@+id/textView" />
 
     <ListView
