@@ -38,9 +38,10 @@ public class DispcomplaintsActivity extends AppCompatActivity {
 
         databaseComp = FirebaseDatabase.getInstance().getReference("complaints");
         //added dialog bar
-        ProgressDialog Dialog = new ProgressDialog(DispcomplaintsActivity.this);
+        final ProgressDialog Dialog = new ProgressDialog(DispcomplaintsActivity.this);
         Dialog.setMessage("Loading Complaints");
         Dialog.show();
+        Dialog.setCancelable(false);
         databaseComp.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -52,6 +53,7 @@ public class DispcomplaintsActivity extends AppCompatActivity {
                 }
                 ComplaintList adapter = new ComplaintList(DispcomplaintsActivity.this, complaintList);
                 listViewComplaints.setAdapter(adapter);
+                Dialog.dismiss();
 
             }
 
