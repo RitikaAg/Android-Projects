@@ -1,5 +1,6 @@
 package com.example.android.complaintapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -65,7 +66,8 @@ private void sendEmail(String t,String em) {
 
                 sendEmail("Your rectification time is:"+time+"\n"+"Your complaint id is:"+key+"\n"+"Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form",email);
                 Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
-               finish();
+                Intent ServicesIntent = new Intent(EntertimeActivity.this,DispcomplaintsActivity.class);
+                startActivity(ServicesIntent);
             }
         });
 

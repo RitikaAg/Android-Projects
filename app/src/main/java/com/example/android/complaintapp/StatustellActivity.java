@@ -80,7 +80,11 @@ public class StatustellActivity extends AppCompatActivity {
                                 {
                                     DatabaseReference src=snapshot.getRef();
                                     final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
+                                    //TODO wrong node pushed
                                     moveFirebaseRecord(src,target);
+
+                                    
+
                                     break;
                                 }
 
