@@ -84,6 +84,7 @@ public class StatustellActivity extends AppCompatActivity {
                                     final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
                                     //TODO wrong node pushed
                                     moveFirebaseRecord(src,target);
+                                    Toast.makeText(getApplicationContext(), "Your response has been recorded", Toast.LENGTH_SHORT).show();
 
                                     
 
@@ -98,11 +99,18 @@ public class StatustellActivity extends AppCompatActivity {
                         }
                     });
                 }
+                Intent ServicesIntent = new Intent(StatustellActivity.this, UserActivity.class);
+                ServicesIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                ServicesIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                ServicesIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(ServicesIntent);
 
             }
-        });
-        Toast.makeText(getApplicationContext(), "Your response has been recorded", Toast.LENGTH_SHORT).show();
-        Intent ServicesIntent = new Intent(StatustellActivity.this, UserActivity.class);
+
+        }
+               );
+
+
 
     }
     public void moveFirebaseRecord(final DatabaseReference fromPath, final DatabaseReference toPath)
@@ -112,7 +120,8 @@ public class StatustellActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                toPath.setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener()
+
+                toPath.push().setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener()
                 {
                     @Override
                     public void onComplete(DatabaseError firebaseError, DatabaseReference firebase)
