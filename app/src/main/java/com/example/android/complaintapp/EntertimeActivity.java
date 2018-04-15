@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by ritika on 9/3/18.
  */
 
-public class EntertimeActivity  extends DispcomplaintsActivity {
+public class EntertimeActivity extends DispcomplaintsActivity {
     private AutoCompleteTextView timeView;
     private String time;
 
@@ -22,19 +22,20 @@ public class EntertimeActivity  extends DispcomplaintsActivity {
     private DatabaseReference mDatabase;
 
 
-// ...
-private void sendEmail(String t,String em) {
-    //Getting content for email
+    // ...
+    private void sendEmail(String t, String em) {
+        //Getting content for email
      /*email = em;
      subject = "complaint";
     message = t;*/
 
-    //Creating SendMail object
-    SendMail sm = new SendMail(this, em, "complaint", t);
+        //Creating SendMail object
+        SendMail sm = new SendMail(this, em, "complaint", t);
 
-    //Executing sendmail to send email
-    sm.execute();
-}
+        //Executing sendmail to send email
+        sm.execute();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +43,9 @@ private void sendEmail(String t,String em) {
         timeView = (AutoCompleteTextView) findViewById(R.id.time);
         time = timeView.getText().toString();
         enter = (Button) findViewById(R.id.button2);
-        
 
-            String key = getIntent().getStringExtra("fkey");
-            final String email = getIntent().getStringExtra("emailid");
-
-
-
-
+        String key = getIntent().getStringExtra("fkey");
+        final String email = getIntent().getStringExtra("emailid");
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("complaints");
 
@@ -59,14 +55,15 @@ private void sendEmail(String t,String em) {
 
                 timeView = (AutoCompleteTextView) findViewById(R.id.time);
                 time = timeView.getText().toString();
-               // mDatabase.child("complaints").child(key).child("res").setValue(time);
+                // mDatabase.child("complaints").child(key).child("res").setValue(time);
                 String key = getIntent().getStringExtra("fkey");
-                 String email = getIntent().getStringExtra("emailid");
+                String email = getIntent().getStringExtra("emailid");
 
 
-                sendEmail("Your rectification time is:"+time+"\n"+"Your complaint id is:"+key+"\n"+"Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form",email);
+                sendEmail("Your rectification time is:" + time + "\n" + "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
                 Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
-                Intent ServicesIntent = new Intent(EntertimeActivity.this,DispcomplaintsActivity.class);
+                Intent ServicesIntent = new Intent(EntertimeActivity.this, DispcomplaintsActivity.class);
+
                 startActivity(ServicesIntent);
             }
         });

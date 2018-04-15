@@ -22,7 +22,7 @@ import java.util.List;
  * Created by ritika on 6/3/18.
  */
 
-public class DispcomplaintsActivity extends AppCompatActivity{
+public class DispcomplaintsActivity extends AppCompatActivity {
     ListView listViewComplaints;
     List<Complaint> complaintList;
     ComplaintList adapter;
@@ -34,43 +34,33 @@ public class DispcomplaintsActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dispcomplaints);
         complaintList = new ArrayList<>();
-        listViewComplaints=(ListView)findViewById(R.id.listViewcomp);
+        listViewComplaints = (ListView) findViewById(R.id.listViewcomp);
 
-        databaseComp= FirebaseDatabase.getInstance().getReference("complaints");
+        databaseComp = FirebaseDatabase.getInstance().getReference("complaints");
         //added dialog bar
         ProgressDialog Dialog = new ProgressDialog(DispcomplaintsActivity.this);
         Dialog.setMessage("Loading Complaints");
         Dialog.show();
-        databaseComp.addValueEventListener(new ValueEventListener()
-        {
+        databaseComp.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 complaintList.clear();
-                for(DataSnapshot compSnapshot: dataSnapshot.getChildren())
-                {
-                    Complaint complaint=compSnapshot.getValue(Complaint.class);
-
-
+                for (DataSnapshot compSnapshot : dataSnapshot.getChildren()) {
+                    Complaint complaint = compSnapshot.getValue(Complaint.class);
                     complaintList.add(complaint);
 
                 }
-                ComplaintList adapter = new ComplaintList(DispcomplaintsActivity.this,complaintList);
+                ComplaintList adapter = new ComplaintList(DispcomplaintsActivity.this, complaintList);
                 listViewComplaints.setAdapter(adapter);
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
             }
 
         });
-
-
-
-
-
 
         listViewComplaints.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -78,25 +68,29 @@ public class DispcomplaintsActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-
-                Complaint c=(Complaint)  adapterView.getItemAtPosition(i);
-                String key=c.getKey();
-                String email=c.getEmail();
-
+                Complaint c = (Complaint) adapterView.getItemAtPosition(i);
+                String key = c.getKey();
+                String email = c.getEmail();
 
                 Intent appInfo = new Intent(getApplicationContext(), EntertimeActivity.class);
 
-                appInfo.putExtra("fkey",key);
-                appInfo.putExtra("emailid",email);
+                appInfo.putExtra("fkey", key);
+                appInfo.putExtra("emailid", email);
 
                 startActivity(appInfo);
 
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Intent inte=new Intent(DispcomplaintsActivity.this,UserActivity.class);
+        inte.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        inte.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        inte.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(inte);
+    }
+    }
 
 
 
-
-
-}
