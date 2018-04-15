@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/white_form"
+    android:background="#DCDCDC"
     tools:context="com.example.android.complaintapp.FormcomplaintActivity">
 
     <ProgressBar
