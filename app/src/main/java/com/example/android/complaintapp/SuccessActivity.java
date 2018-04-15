@@ -1,5 +1,6 @@
 package com.example.android.complaintapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -19,6 +20,24 @@ public class SuccessActivity extends FormcomplaintActivity  {
         TextView keyview=(TextView) findViewById(R.id.key);
         //String key=getIntent().getStringExtra("fkey");
         keyview.setText("Your Complaint Has Been Registered Successfully"+"\n"+"Further Details Shall Be Mailed To You");
+        Thread thread=new Thread()
+        {
+            @Override
+            public void run()
+            {
+                try{
+                    sleep(14*100);
+                    Intent i=new Intent(getApplicationContext(),UserActivity.class);
+                    startActivity(i);
+
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }
+        };
+        thread.start();
 
     }
 

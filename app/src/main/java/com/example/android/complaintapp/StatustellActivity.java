@@ -1,5 +1,6 @@
 package com.example.android.complaintapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -99,6 +101,8 @@ public class StatustellActivity extends AppCompatActivity {
 
             }
         });
+        Toast.makeText(getApplicationContext(), "Your response has been recorded", Toast.LENGTH_SHORT).show();
+        Intent ServicesIntent = new Intent(StatustellActivity.this, UserActivity.class);
 
     }
     public void moveFirebaseRecord(final DatabaseReference fromPath, final DatabaseReference toPath)
