@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blue"
+    android:background="#DCDCDC"
 
     tools:context="com.example.android.complaintapp.UserActivity">
 
@@ -15,7 +15,12 @@
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:elevation="15dp"
+        android:translationZ="15dp"
+        android:stateListAnimator="@null"
+
+        >
 
 
 
@@ -23,8 +28,11 @@
             android:id="@+id/user"
             style="@style/CategoryStyle"
             android:textAlignment="center"
-            android:text="Click for complaint"
-            android:layout_height="match_parent" />
+            android:text="Register Complaint"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/arcade"
+            android:textSize="20sp"
+            />
 
     </FrameLayout>
 
@@ -33,12 +41,17 @@
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:background="@drawable/layout_bg">
+        android:background="@drawable/layout_bg"
+        android:elevation="15dp"
+        android:translationZ="15dp"
+        android:stateListAnimator="@null">
         <TextView
             android:id="@+id/controlroom"
             android:textAlignment="center"
             style="@style/CategoryStyle"
-            android:text="Login To Control Room"
+            android:text="Control Room Login"
+            android:fontFamily="@font/arcade"
+            android:textSize="20sp"
             />
 
     </FrameLayout>
@@ -46,14 +59,19 @@
         android:layout_width="290dp"
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
-
+        android:elevation="15dp"
+        android:translationZ="15dp"
+        android:stateListAnimator="@null"
         android:layout_marginTop="300dp"
         android:background="@drawable/layout_bg">
         <TextView
             android:id="@+id/status"
             android:textAlignment="center"
             style="@style/CategoryStyle"
-            android:text="Give Complaint Status"
+            android:text="Complaint Status"
+            android:fontFamily="@font/arcade"
+            android:textSize="20sp"
+
             />
 
     </FrameLayout>

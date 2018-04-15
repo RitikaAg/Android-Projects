@@ -23,4 +23,5 @@
     <!-- Background color for the phrases category -->
     <color name="category_phrases">#16AFCA</color>
     <color name="crimson">#FD8686</color>
+    <color name="appbar">#FF8C00</color>
 </resources>
