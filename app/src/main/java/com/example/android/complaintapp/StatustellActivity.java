@@ -84,6 +84,7 @@ public class StatustellActivity extends AppCompatActivity {
                                     final DatabaseReference target=FirebaseDatabase.getInstance().getReference().child("Old Complaints");
                                     //TODO wrong node pushed
                                     moveFirebaseRecord(src,target);
+                                    Toast.makeText(getApplicationContext(), "Your response has been recorded", Toast.LENGTH_SHORT).show();
 
                                     
 
@@ -101,7 +102,7 @@ public class StatustellActivity extends AppCompatActivity {
 
             }
         });
-        Toast.makeText(getApplicationContext(), "Your response has been recorded", Toast.LENGTH_SHORT).show();
+
         Intent ServicesIntent = new Intent(StatustellActivity.this, UserActivity.class);
 
     }
