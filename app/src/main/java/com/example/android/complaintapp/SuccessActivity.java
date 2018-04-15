@@ -28,6 +28,9 @@ public class SuccessActivity extends FormcomplaintActivity  {
                 try{
                     sleep(14*100);
                     Intent i=new Intent(getApplicationContext(),UserActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(i);
 
                 }
