@@ -94,13 +94,17 @@ public class EntertimeActivity  extends DispcomplaintsActivity implements DatePi
                 // mDatabase.child("complaints").child(key).child("res").setValue(time);
                 String key = getIntent().getStringExtra("fkey");
                 String email = getIntent().getStringExtra("emailid");
+                if(date.getText().equals("Set Date")||time.equals(""))
+                    Toast.makeText(view.getContext(), "Enter Timing Details", Toast.LENGTH_SHORT).show();
+                else {
 
 
-                sendEmail("Your rectification time is:" +date.getText() +","+time+ "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
-                Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
-                Intent ServicesIntent = new Intent(EntertimeActivity.this, DispcomplaintsActivity.class);
+                    sendEmail("Your rectification time is:" + date.getText() + "," + time + "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
+                    Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
+                    Intent ServicesIntent = new Intent(EntertimeActivity.this, DispcomplaintsActivity.class);
 
-                startActivity(ServicesIntent);
+                    startActivity(ServicesIntent);
+                }
             }
         });
     }
