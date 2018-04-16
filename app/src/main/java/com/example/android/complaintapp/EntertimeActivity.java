@@ -1,31 +1,20 @@
 package com.example.android.complaintapp;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
-import java.util.Calendar;
-
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.view.Menu;
-import android.widget.TextView;
-
-
 import android.widget.DatePicker;
-
-
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
 
 /**
  * Created by ritika on 9/3/18.
@@ -42,8 +31,8 @@ public class EntertimeActivity  extends DispcomplaintsActivity
 
             //
 
-    //private AutoCompleteTextView timeView;
-   // private String time;
+    private AutoCompleteTextView timeView;
+   private String time;
 
     private Button enter;
     private DatabaseReference mDatabase;
@@ -98,15 +87,15 @@ public class EntertimeActivity  extends DispcomplaintsActivity
             public void onClick(View view)
             {
 
-               /* timeView = (AutoCompleteTextView) findViewById(R.id.time);
-                time = timeView.getText().toString();*/
+               timeView = (AutoCompleteTextView) findViewById(R.id.time);
+                time = timeView.getText().toString();
                 // mDatabase.child("complaints").child(key).child("res").setValue(time);
                 String key = getIntent().getStringExtra("fkey");
                 String email = getIntent().getStringExtra("emailid");
 
 
                 sendEmail("Your rectification time is:" +new StringBuilder().append(day).append("/")
-                        .append(month).append("/").append(year) + "\n" + "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
+                        .append(month).append("/").append(year) + "\n" +","+time+ "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
                 Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
                 Intent ServicesIntent = new Intent(EntertimeActivity.this, DispcomplaintsActivity.class);
 
@@ -119,9 +108,9 @@ public class EntertimeActivity  extends DispcomplaintsActivity
             public void setDate(View view)
             {
                 showDialog(999);
-                Toast.makeText(getApplicationContext(), "ca",
+               /* Toast.makeText(getApplicationContext(), "ca",
                         Toast.LENGTH_SHORT)
-                        .show();
+                        .show();*/
             }
 
             @Override

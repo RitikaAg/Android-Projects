@@ -38,26 +38,25 @@
         android:editable="false"/>-->
 
 
- <!--   <TextView
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="143dp"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="61dp"
-        android:text="Enter time and Date" />
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignStart="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="32dp"
+        android:text="Enter time " />
 
     <AutoCompleteTextView
         android:id="@+id/time"
-        android:layout_width="match_parent"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignStart="@+id/textView1"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:completionHint="Time" /> -->
+        android:layout_marginTop="16dp"
+        android:completionHint="Time" />
 
 
 
@@ -91,83 +90,76 @@
         android:text="@string/date_view_set"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 -->
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="72dp"
-        android:text="@string/date_selected"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
-<!--
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/time_pick"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <!--
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/time_pick"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/set_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="180dp"
-        android:onClick="setTime"
-        android:text="@string/time_save" />
+        <Button
+            android:id="@+id/set_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="180dp"
+            android:onClick="setTime"
+            android:text="@string/time_save" />
 
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/set_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp" />
+        <TimePicker
+            android:id="@+id/timePicker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/set_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp" />
 
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/timePicker1"
-        android:layout_alignTop="@+id/set_button"
-        android:layout_marginTop="67dp"
-        android:text="@string/time_current"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/timePicker1"
+            android:layout_alignTop="@+id/set_button"
+            android:layout_marginTop="67dp"
+            android:text="@string/time_current"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/time_selected"
-        android:textAppearance="?android:attr/textAppearanceMedium" />-->
-
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/time_selected"
+            android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
 
     <Button
         android:id="@+id/button2"
 
 
-
-
-        android:text="Enter"
-        android:elevation="15dp"
-        android:translationZ="15dp"
-        android:stateListAnimator="@null"
-        android:textColor="#000000"
-        android:background="@drawable/layout_bg"
         android:layout_width="290dp"
         android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/arcade"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button1"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="152dp"
 
-        />
+        android:background="@drawable/layout_bg"
+
+        android:elevation="15dp"
+        android:fontFamily="@font/arcade"
+        android:stateListAnimator="@null"
+        android:text="Enter"
+        android:textColor="#000000"
+        android:translationZ="15dp" />
 </RelativeLayout>
