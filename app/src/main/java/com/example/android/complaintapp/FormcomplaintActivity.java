@@ -94,8 +94,7 @@ public class FormcomplaintActivity extends AppCompatActivity {
                 // find the radio button by returned id
                 RadioButton radiohButton = (RadioButton) findViewById(selectedhosId);
                 RadioButton radiocButton = (RadioButton) findViewById(selectedconId);
-                hostel = radiohButton.getText().toString();
-                condition = radiocButton.getText().toString();
+
                 Intent ServicesIntent = new Intent(FormcomplaintActivity.this, SuccessActivity.class);
 
                 ServicesIntent.putExtra("fkey", key);
@@ -104,6 +103,8 @@ public class FormcomplaintActivity extends AppCompatActivity {
                 if (check())
                 // Start the new activity
                 {
+                    hostel = radiohButton.getText().toString();
+                    condition = radiocButton.getText().toString();
 
 
                     Complaint complaint = new Complaint(name, email, rollno, hostel, roomno, number, condition, description, key, services, "");
@@ -131,8 +132,15 @@ public class FormcomplaintActivity extends AppCompatActivity {
         roomno = mRoomnoView.getText().toString();
         number = mNumberView.getText().toString();
         description = mdescription.getText().toString();
+        hostelgroup = (RadioGroup) findViewById(R.id.hostel);
+        congroup = (RadioGroup) findViewById(R.id.condition);
+        int selectedhosId = hostelgroup.getCheckedRadioButtonId();
+        int selectedconId = congroup.getCheckedRadioButtonId();
+        // find the radio button by returned id
+        RadioButton radiohButton = (RadioButton) findViewById(selectedhosId);
+        RadioButton radiocButton = (RadioButton) findViewById(selectedconId);
 
-        boolean c, d, e, n;
+        boolean c, d, e, n,g;
         if (email.matches(emailPattern)) {
             //Toast.makeText(getApplicationContext(), "valid email address", Toast.LENGTH_SHORT).show();
             c = true;
@@ -162,7 +170,16 @@ public class FormcomplaintActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Name", Toast.LENGTH_SHORT).show();
             n = false;
         } else n = true;
-        if (c && d && e && n)
+        if(hostelgroup.getCheckedRadioButtonId()==-1||congroup.getCheckedRadioButtonId()==-1)
+        {
+            Toast.makeText(this, "All fields not filled", Toast.LENGTH_SHORT).show();
+            g=false;
+        }
+        else g=true;
+
+
+
+        if (c && d && e && n && g)
             return true;
         else
             return false;

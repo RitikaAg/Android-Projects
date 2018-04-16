@@ -55,17 +55,29 @@ public class StatustellActivity extends AppCompatActivity {
 
             }
         }*/
+        if(Id.isEmpty()||response.getCheckedRadioButtonId()==-1) {
+            enter.setEnabled(false);
+            Toast.makeText(getApplicationContext(), "Fill All Fields", Toast.LENGTH_SHORT).show();
+
+        }
+        else
+            enter.setEnabled(true);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 response=(RadioGroup)findViewById(R.id.response);
-                response.check(R.id.yes);
+                StatusView =(AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+                Id = StatusView.getText().toString().trim();
+
                 int selectstatus = response.getCheckedRadioButtonId();
                 RadioButton selectstat = (RadioButton) findViewById(selectstatus);
+                if(response.getCheckedRadioButtonId()!=-1)
                 status=selectstat.getText().toString().trim();
 
-                if(status.equals("Yes")) {
+
+
+                if(status.equals("Yes")&&!Id.isEmpty()) {
                    
                     FirebaseDatabase.getInstance().getReference().child("complaints").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -99,6 +111,8 @@ public class StatustellActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+
                 Intent ServicesIntent = new Intent(StatustellActivity.this, UserActivity.class);
                 ServicesIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ServicesIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
