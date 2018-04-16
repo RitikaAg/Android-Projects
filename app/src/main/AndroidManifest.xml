@@ -39,6 +39,9 @@
             android:name=".ServicesActivity"
             android:label="HELP ME" />
         <activity
+            android:name=".ContactActivity"
+            android:label="HELP ME" />
+        <activity
             android:name=".FormcomplaintActivity"
             android:label="HELP ME" />
         <activity

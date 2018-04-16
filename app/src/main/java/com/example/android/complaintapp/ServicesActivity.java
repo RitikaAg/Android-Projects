@@ -1,7 +1,6 @@
 package com.example.android.complaintapp;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -102,7 +101,7 @@ public class ServicesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Create a new intent to open the {@link NumbersActivity}
                 //change number
-                Intent callIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:9899308574"));
+                Intent callIntent = new Intent(ServicesActivity.this,ContactActivity.class);
                 //callIntent.setData());
                 // Start the new activity
 
