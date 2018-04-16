@@ -112,6 +112,9 @@ public class FormcomplaintActivity extends AppCompatActivity {
                     startActivity(ServicesIntent);
 
                 }
+                else
+                    Toast.makeText(getApplicationContext(), "Invalid entry", Toast.LENGTH_SHORT).show();
+
 
 
             }

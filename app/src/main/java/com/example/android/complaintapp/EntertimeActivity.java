@@ -1,7 +1,7 @@
 package com.example.android.complaintapp;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,13 +14,14 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 /**
  * Created by ritika on 9/3/18.
  */
 
-public class EntertimeActivity  extends DispcomplaintsActivity
+public class EntertimeActivity  extends DispcomplaintsActivity implements DatePickerDialog.OnDateSetListener
 
         {
             private DatePicker datePicker;
@@ -88,14 +89,14 @@ public class EntertimeActivity  extends DispcomplaintsActivity
             {
 
                timeView = (AutoCompleteTextView) findViewById(R.id.time);
+                TextView date=(TextView)findViewById(R.id.textView6);
                 time = timeView.getText().toString();
                 // mDatabase.child("complaints").child(key).child("res").setValue(time);
                 String key = getIntent().getStringExtra("fkey");
                 String email = getIntent().getStringExtra("emailid");
 
 
-                sendEmail("Your rectification time is:" +new StringBuilder().append(day).append("/")
-                        .append(month).append("/").append(year) + "\n" +","+time+ "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
+                sendEmail("Your rectification time is:" +date.getText() +","+time+ "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
                 Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
                 Intent ServicesIntent = new Intent(EntertimeActivity.this, DispcomplaintsActivity.class);
 
@@ -107,50 +108,38 @@ public class EntertimeActivity  extends DispcomplaintsActivity
             @SuppressWarnings("deprecation")
             public void setDate(View view)
             {
-                showDialog(999);
+                //showDialog(999);
                /* Toast.makeText(getApplicationContext(), "ca",
                         Toast.LENGTH_SHORT)
                         .show();*/
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getFragmentManager(),"Date Picker");
             }
 
-            @Override
-            protected Dialog onCreateDialog(int id)
-            {
-                // TODO Auto-generated method stub
-                if (id == 999) {
-                    return new DatePickerDialog(this,
-                            myDateListener, year, month, day);
-                }
-                return null;
-            }
 
-            private DatePickerDialog.OnDateSetListener myDateListener = new
-                    DatePickerDialog.OnDateSetListener() {
+
+
                         @Override
                         public void onDateSet(DatePicker arg0,
                                               int arg1, int arg2, int arg3) {
                             // TODO Auto-generated method stub
+                            Calendar c=Calendar.getInstance();
+                            c.set(Calendar.YEAR,arg1);
+                            c.set(Calendar.MONTH,arg2);
+                            c.set(Calendar.DAY_OF_MONTH,arg3);
                             // arg1 = year
                             // arg2 = month
                             // arg3 = day
-                            showDate(arg1, arg2+1, arg3);
+                            String currrentdate= DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+                            TextView date=(TextView)findViewById(R.id.textView6);
+                            date.setText(currrentdate);
                         }
-                    };
 
-            private void showDate(int year, int month, int day)
-            {
-                dateView.setText(new StringBuilder().append(day).append("/")
-                        .append(month).append("/").append(year));
-            }
+
             //
 
 
-
-
-
-
-
-    }
+        }
 
 
 
