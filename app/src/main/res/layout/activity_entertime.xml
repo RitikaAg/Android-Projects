@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DCDCDC"
+    android:orientation="vertical"
     tools:context="com.example.android.complaintapp.EntertimeActivity">
 
 
@@ -37,7 +38,7 @@
         android:editable="false"/>-->
 
 
-    <TextView
+ <!--   <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,29 +57,116 @@
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
-        android:completionHint="Time" />
+        android:completionHint="Time" /> -->
+
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:onClick="setDate"
+        android:text="@string/date_button_set" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/date_label_set"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+   <!-- <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="66dp"
+        android:layout_toLeftOf="@+id/button1"
+        android:text="@string/date_view_set"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+-->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/button1"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="72dp"
+        android:text="@string/date_selected"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+<!--
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/time_pick"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/set_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="180dp"
+        android:onClick="setTime"
+        android:text="@string/time_save" />
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/set_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/timePicker1"
+        android:layout_alignTop="@+id/set_button"
+        android:layout_marginTop="67dp"
+        android:text="@string/time_current"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="@string/time_selected"
+        android:textAppearance="?android:attr/textAppearanceMedium" />-->
+
+
 
     <Button
         android:id="@+id/button2"
 
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
+
+
+
         android:text="Enter"
         android:elevation="15dp"
         android:translationZ="15dp"
         android:stateListAnimator="@null"
         android:textColor="#000000"
-        android:bottomRightRadius="10dp"
-        android:bottomLeftRadius="10dp"
-        android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"
-        android:background="#FF8C00"
+        android:background="@drawable/layout_bg"
         android:layout_width="290dp"
         android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:fontFamily="@font/arcade"
 
         />

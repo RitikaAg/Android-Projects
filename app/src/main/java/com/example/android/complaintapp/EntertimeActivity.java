@@ -1,11 +1,28 @@
 package com.example.android.complaintapp;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
+
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.view.Menu;
+import android.widget.TextView;
+
+
+import android.widget.DatePicker;
+
+
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -14,12 +31,24 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by ritika on 9/3/18.
  */
 
-public class EntertimeActivity extends DispcomplaintsActivity {
-    private AutoCompleteTextView timeView;
-    private String time;
+public class EntertimeActivity  extends DispcomplaintsActivity
+
+        {
+            private DatePicker datePicker;
+            private TextView dateView;
+            private int year, month, day;
+
+            private Calendar calendar;
+
+            //
+
+    //private AutoCompleteTextView timeView;
+   // private String time;
 
     private Button enter;
     private DatabaseReference mDatabase;
+
+
 
 
     // ...
@@ -37,11 +66,24 @@ public class EntertimeActivity extends DispcomplaintsActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entertime);
-        timeView = (AutoCompleteTextView) findViewById(R.id.time);
-        time = timeView.getText().toString();
+        dateView = (TextView) findViewById(R.id.textView3);
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+       // showDate(year, month+1, day);
+        //
+
+
+
+
+        //
+
         enter = (Button) findViewById(R.id.button2);
 
         String key = getIntent().getStringExtra("fkey");
@@ -49,30 +91,80 @@ public class EntertimeActivity extends DispcomplaintsActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("complaints");
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                timeView = (AutoCompleteTextView) findViewById(R.id.time);
-                time = timeView.getText().toString();
+        enter.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+
+               /* timeView = (AutoCompleteTextView) findViewById(R.id.time);
+                time = timeView.getText().toString();*/
                 // mDatabase.child("complaints").child(key).child("res").setValue(time);
                 String key = getIntent().getStringExtra("fkey");
                 String email = getIntent().getStringExtra("emailid");
 
 
-                sendEmail("Your rectification time is:" + time + "\n" + "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
+                sendEmail("Your rectification time is:" +new StringBuilder().append(day).append("/")
+                        .append(month).append("/").append(year) + "\n" + "Your complaint id is:" + key + "\n" + "Please copy this complaint id when your complaint is rectified,and paste it in the, give your complaint status form", email);
                 Toast.makeText(view.getContext(), "Time Updated", Toast.LENGTH_SHORT).show();
                 Intent ServicesIntent = new Intent(EntertimeActivity.this, DispcomplaintsActivity.class);
 
                 startActivity(ServicesIntent);
             }
         });
+    }
+
+            @SuppressWarnings("deprecation")
+            public void setDate(View view)
+            {
+                showDialog(999);
+                Toast.makeText(getApplicationContext(), "ca",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            protected Dialog onCreateDialog(int id)
+            {
+                // TODO Auto-generated method stub
+                if (id == 999) {
+                    return new DatePickerDialog(this,
+                            myDateListener, year, month, day);
+                }
+                return null;
+            }
+
+            private DatePickerDialog.OnDateSetListener myDateListener = new
+                    DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker arg0,
+                                              int arg1, int arg2, int arg3) {
+                            // TODO Auto-generated method stub
+                            // arg1 = year
+                            // arg2 = month
+                            // arg3 = day
+                            showDate(arg1, arg2+1, arg3);
+                        }
+                    };
+
+            private void showDate(int year, int month, int day)
+            {
+                dateView.setText(new StringBuilder().append(day).append("/")
+                        .append(month).append("/").append(year));
+            }
+            //
+
+
+
+
+
 
 
     }
 
 
-}
+
    /* private Calendar myCalendar;
     private TextView edittext;
     private TextView edittext1;
@@ -140,3 +232,4 @@ public class EntertimeActivity extends DispcomplaintsActivity {
  /*android:layout_alignLeft="@+id/textView3"
          android:layout_alignStart="@+id/textView3"
          android:layout_below="@+id/autoCompleteTextView*/
+
