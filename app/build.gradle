@@ -26,6 +26,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -44,6 +45,7 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     compile 'com.google.android.gms:play-services-auth:11.8.0'
 }
 apply plugin: 'com.google.gms.google-services'

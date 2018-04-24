@@ -63,7 +63,8 @@
         android:translationZ="15dp"
         android:stateListAnimator="@null"
         android:layout_marginTop="300dp"
-        android:background="@drawable/layout_bg">
+        android:background="@drawable/layout_bg"
+        android:id="@+id/frameLayout">
         <TextView
             android:id="@+id/status"
             android:textAlignment="center"
@@ -75,5 +76,7 @@
             />
 
     </FrameLayout>
+
+   
 
 </RelativeLayout>

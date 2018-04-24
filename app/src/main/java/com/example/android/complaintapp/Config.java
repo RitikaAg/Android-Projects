@@ -5,6 +5,6 @@ package com.example.android.complaintapp;
  */
 
 public class Config {
-    public static final String EMAIL ="ritikaagarwal646@gmail.com"; //your-gmail-username
-    public static final String PASSWORD ="doctorwho@7"; //your-gmail-password
+    public static final String EMAIL ="*************"; //TODO put email id of sender
+    public static final String PASSWORD ="*********"; //TODO put email password of sender
 }
